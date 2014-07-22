@@ -36,5 +36,5 @@ class IdeaBoxApp < Sinatra::Base
     Idea.update(id.to_i, params[:idea])
     redirect '/'
   end
-  
+
 end
