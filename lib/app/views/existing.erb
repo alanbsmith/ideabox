@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="masthead">
+    <h1>Idea Dashboard</h1>
+  </div>
+
+    <% ideas.each do |idea| %>
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="http://thegraphicsfairy.com/wp-content/uploads/blogger/-GSPcL9gJ1hc/T05l-8syFzI/AAAAAAAAQtw/kAZSg3dGJX0/s1600/lightbulb-Vintage-Image-GraphicsFairy.jpg" alt="Generic placeholder image" style="width: 44px; height: 75px;">
+          <h3><%= idea.title %></h3>
+          <h5><%= idea.description %></h5>
+          Rank: <%= idea.rank %>
+          <form class="form-like" role="form" action='/<%= idea.id %>/like' method='POST'/>
+            <input type='submit' value="Like" class="btn btn-primary"/>
+          </form>
+
+          <form class="form-signin" role= "form" action="/<%= idea.id %>" method="POST">
+            <a href="/<%= idea.id %>/edit" class= "btn btn-primary">Edit</a>
+            <input type="hidden" name="_method" value="DELETE">
+            <input class= "btn btn-primary" type="submit" value="Delete"/>
+          </form>
+        </div>
+        <% end %>
+      </div>

@@ -1,32 +1,12 @@
+<div class="container">
 
-    <h1>IdeaBox</h1>
-    <form action='/' method='POST'>
-      <p>
-        Your Idea:
-      </p>
-      <input type='text' name='idea[title]'/><br/>
-      <textarea name='idea[description]'></textarea><br/>
-      <input type='submit'/>
+  <div class= "form-group">
+      <form action='/' method='POST' class="form-signin" role="form">
+        <h1 class="form-signin-heading">Feeling Inspired?</h1>
+        <h4> Add your latest and greatest ideas here.</h4>
+      <input type='text' name='idea[title]' class= "form-control" placeholder= "title"/><br/>
+      <textarea name='idea[description]'class= "form-control" placeholder= "description"></textarea><br/>
+      <input class= "btn btn-lg btn-primary btn-block" type='submit'/>
     </form>
-
-    <h3>Existing Ideas</h3>
-
-    <ul>
-      <% ideas.each do |idea| %>
-        <li>
-          <%= idea.title %> (<%= idea.id %>)<br/>
-          <%= idea.description %>
-          Rank is <%= idea.rank %>
-          <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
-            <input type='submit' value="+"/>
-          </form>
-          <a href="/<%= idea.id %>/edit">Edit</a>
-          <form action="/<%= idea.id %>" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="delete"/>
-          </form>
-        </li>
-      <% end %>
-    </ul>
-
-</html>
+  </div>
+</div>

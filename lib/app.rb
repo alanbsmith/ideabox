@@ -13,35 +13,38 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   get '/' do
-    #ask about the number of args for idea tomorrow
     erb :index, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
+  end
+
+  get '/existing' do
+    erb :existing, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
   end
 
   post '/' do
     IdeaStore.create(params[:idea])
-    redirect '/'
+    redirect '/existing'
   end
 
   delete '/:id' do |id|
     IdeaStore.delete(id.to_i)
-    redirect '/'
+    redirect '/existing'
   end
 
   get '/:id/edit' do |id|
     idea = IdeaStore.find(id.to_i)
-    erb :edit, locals: { id: id, idea: idea }
+    erb :edit, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
   end
 
   put '/:id' do |id|
     IdeaStore.update(id.to_i, params[:idea])
-    redirect '/'
+    redirect '/existing'
   end
 
   post '/:id/like' do |id|
     idea = IdeaStore.find(id.to_i)
     idea.like!
     IdeaStore.update(id.to_i, idea.to_h)
-    redirect '/'
+    redirect '/existing'
   end
 
 end
