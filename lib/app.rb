@@ -47,4 +47,10 @@ class IdeaBoxApp < Sinatra::Base
     redirect '/existing'
   end
 
+  helpers do
+    def format_rank(idea)
+      "Rank: #{idea.rank}"
+    end
+  end
+
 end
